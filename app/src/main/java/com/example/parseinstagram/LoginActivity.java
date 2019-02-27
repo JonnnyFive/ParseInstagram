@@ -86,15 +86,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void goLogin() {
-        Log.d(TAG, "Navigating to the Login Activity");
-        Intent i = new Intent(this, LoginActivity.class);
+        Log.d(TAG, "Navigating to the Main Activity");
+        Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
         finish();
     }
-
-
-
-
 
 
 
