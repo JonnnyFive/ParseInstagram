@@ -18,7 +18,6 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -50,26 +49,18 @@ public class LoginActivity extends AppCompatActivity {
         btnCaptureImage = findViewById(R.id.btnCaptureImage);
         ivPostImage = findViewById(R.id.ivPostImage);
         btnSubmit = findViewById(R.id.btnSubmit);
+        btnLogout = findViewById(R.id.btnLogout);
 
-        ParseUser.logInInBackground("JonnnyFive", "test", new LogInCallback() {
-            public void done(ParseUser user, ParseException e) {
-                if (user != null) {
-                    // Hooray! The user is logged in.
-                } else {
-                    // Signup failed. Look at the ParseException to see what happened.
-                }
+
+        //put log out button here
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ParseUser.logOut();
+                ParseUser currentUser = ParseUser.getCurrentUser(); // this will now be null
+                goLogin();
             }
         });
-        ParseUser currentUser = ParseUser.getCurrentUser();
-        if (currentUser != null) {
-            // do stuff with the user
-        } else {
-            // show the signup or login screen
-        }
-        ParseUser.logOut();
-
-
-
 
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,24 +69,36 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-        //queryPosts();
+        // queryPosts();
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String description = etDescription.getText().toString();
                 ParseUser user = ParseUser.getCurrentUser();
-                if (photoFile == null || ivPostImage.getDrawable() == null){
+                if (photoFile == null || ivPostImage.getDrawable() == null) {
                     Log.e(TAG, "No photo to submit");
-                    Toast.makeText(LoginActivity.this, "There os no photo to input!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "There is no photo!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 savePost(description, user, photoFile);
             }
         });
     }
+
+    private void goLogin() {
+        Log.d(TAG, "Navigating to the Login Activity");
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+
+
+
+
+
+
+
 
 
 
