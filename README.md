@@ -6,6 +6,7 @@ Time spent: 11 hours spent in total
 
 ## User Stories
 
+
 The following **required** functionality is completed:
 
 - [x ] User can sign up to create a new account using Parse authentication.
