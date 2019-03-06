@@ -13,6 +13,10 @@ import com.parse.ParseUser;
         public static final String  KEY_DESCRIPTION = "description";
         public static final String  KEY_IMAGE = "image";
         public static final String  KEY_USER = "User";
+        public static final String KEY_CREASTED_AT = "createdAt";
+
+
+
 
         public String getDescription(){
             return getString(KEY_DESCRIPTION);
